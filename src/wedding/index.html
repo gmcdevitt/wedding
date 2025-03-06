@@ -30,18 +30,16 @@
         </nav>
         <nav class="navbar">
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#">Photos</a></li>
                 <li><a href="#">Wedding Party</a></li>
-                <li><a href="#">Q & A</a></li>
-<!--                <li><a href="#">Travel</a></li>-->
-<!--                <li><a href="#">Things to Do</a></li>-->
+                <li><a onclick="loadContent('q&a.html')" href="#">Q & A</a></li>
                 <li><a href="#">Registry</a></li>
             </ul>
         </nav>
     </header>
     <!-- endregion Header -->
-    <div class="page-content-container">
+    <div id="content" class="page-content-container">
         <aside class="profile-sidebar">
             <div class="profile-picture">
                 <header>
@@ -49,10 +47,10 @@
                 </header>
                 <div class="profile-picture-container">
                     <img
-                        class="profile-pic"
-                        src="pictures/profile.jpg"
-                        alt="A profile picture of Gerard & Storm, the groom and bride."
-                        style="max-width: 300px; max-height: 300px"
+                            class="profile-pic"
+                            src="pictures/profile.jpg"
+                            alt="A profile picture of Gerard & Storm, the groom and bride."
+                            style="max-width: 300px; max-height: 300px"
                     >
                 </div>
             </div>
@@ -226,33 +224,44 @@
             </section>
             <!-- endregion Wedding Day -->
         </main>
+        <script>
+            // Set the date we're counting down to
+            const countDownDate = new Date("Oct 24, 2025 00:00:00").getTime();
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+              // Get today's date and time
+              const now = new Date().getTime();
+              // Find the distance between now and the count down date
+              const distance = countDownDate - now;
+              // Time calculations for days, hours, minutes and seconds
+              const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+              // Display the result in the element with id="countdown"
+              document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+              + minutes + "m " + seconds + "s ";
+
+              // If the count down is finished, write some text
+              if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+              }
+            }, 1000);
+        </script>
     </div>
     <script>
-        // Set the date we're counting down to
-        const countDownDate = new Date("Oct 24, 2025 00:00:00").getTime();
+        function loadContent(url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("content").innerHTML = data;
+                })
+                .catch(error => console.error('Error loading content:', error));
+        }
 
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-          // Get today's date and time
-          const now = new Date().getTime();
-          // Find the distance between now and the count down date
-          const distance = countDownDate - now;
-          // Time calculations for days, hours, minutes and seconds
-          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-          // Display the result in the element with id="countdown"
-          document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-          + minutes + "m " + seconds + "s ";
-
-          // If the count down is finished, write some text
-          if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("countdown").innerHTML = "EXPIRED";
-          }
-        }, 1000);
 
         const toggleButton = button => {
             const currentDisplay = button.style.display;
