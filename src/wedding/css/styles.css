@@ -1,12 +1,40 @@
 :root {
     --white: #FFFFFF;
-    --off-white: #b4b4b4;
+    --black: #000000;
     --dark-plum: #3A233D;
     --light-plum: #4C354F;
     --extra-light-plum: #6e4d72;
     --dark-gray: #221F20;
+    --light-gray: #b4b4b4;
     --cream: #B2AA9E;
     --burgundy: #5a0f0f;
+
+    --ms-dark-blue: rgb(0, 51, 153);
+    --ms-light-blue: rgb(102, 153, 204);
+    --ms-pale-blue: rgb(177, 208, 240);
+    --ms-paler-blue: rgb(213, 232, 251);
+    --ms-light-orange: #ffcc99;
+    --ms-dark-orange: #FF6600;
+    --ms-white: #e5e5e5;
+
+    --blurbs-text: var(--cream);
+    --sidebar-table: var(--dark-plum);
+
+    --link: var(--white);
+    --visited-link: var(--light-gray);
+    --navbar: var(--light-plum);
+    --main-header: var(--dark-plum);
+    --body-background-color: var(--light-gray);
+    --master-container-background: var(--dark-gray);
+    --main-section-header-background: var(--burgundy);
+    --main-section-h2-text: var(--white);
+    --sidebar-table-h2: var(--dark-gray);
+    --sidebar-table-border-color: var(--dark-plum);
+    --sidebar-table-header: var(--dark-plum);
+    --sidebar-table-data: var(--extra-light-plum);
+    --sidebar-table-data-text: var(--white);
+    --master-container-text: var(--cream);
+    --user-network-background: var(--burgundy);
 }
 
 /*
@@ -24,7 +52,7 @@ html {
 
 body {
   font-family: verdana, arial, sans-serif, helvetica;
-  background-color: #A9A9A9; /* dark gray */
+  background-color: var(--body-background-color);
   font-size: 8pt;
   margin: 0;
 }
@@ -65,16 +93,16 @@ Master Container
 .master-container {
   margin: auto;
   max-width: 800px;
-  color: var(--cream);
-  background-color: var(--dark-gray);
+  color: var(--master-container-text);
+  background-color: var(--master-container-background);
 }
 
 .master-container a:link {
-  color: var(--white);
+  color: var(--link);
 }
 
 .master-container a:visited {
-  color: var(--off-white);
+  color: var(--visited-link);
 }
 
 /*
@@ -86,7 +114,7 @@ Main Header
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: var(--dark-plum);
+  background-color: var(--main-header);
   color: #ffffff;
 }
 
@@ -109,20 +137,11 @@ Search Bar
 ========================================
 */
 .search-bar {
-  display: grid;
-  grid-template-columns: .25fr 1fr .25fr;
+  display: flex;
 }
 
-.search-bar form {
-  justify-self: center;
-  margin: 0;
-}
-
-.search-bar form [type="text"] {
-}
-
-.search-bar form [type="radio"] {
-  margin-right: .33rem;
+.buttons {
+  margin-left: auto;
 }
 
 .search-bar ul {
@@ -165,7 +184,7 @@ Navigation Bar
   display: flex;
   align-items: center;
   margin-top: auto;
-  background-color: var(--light-plum);
+  background-color: var(--navbar);
 
   height: 26px;
 }
@@ -203,9 +222,23 @@ Page Content Container
   gap: 1rem
 }
 
+@media (min-width: 800px) {
+  main .profile-picture {
+    display: none;
+  }
+}
+
 @media (max-width: 800px) {
   .page-content-container {
-    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+
+  aside .profile-picture {
+    display: none;
+  }
+
+  main .profile-picture {
+    display: column;
   }
 }
 
@@ -340,14 +373,14 @@ Sidebar Table Class
 ========================================
 */
 .sidebar-table {
-  border: 2px solid var(--dark-plum);
+  border: 2px solid var(--sidebar-table-border-color);
   display: table;
   border-collapse: separate;
   border-spacing: 3px;
 }
 
 .sidebar-table-h2 {
-  background-color: var(--dark-gray);
+  background-color: var(--sidebar-table-h2);
   color: white;
   text-align: left;
   height: 17px;
@@ -359,7 +392,7 @@ Sidebar Table Class
   vertical-align: top;
   text-align: left;
   width: 107px;
-  background-color: var(--dark-plum);
+  background-color: var(--sidebar-table-header);
   color: #336699;
   padding: 3px;
   font-weight: bold;
@@ -368,9 +401,9 @@ Sidebar Table Class
 
 .sidebar-table-data {
   width: 184px;
-  background-color: var(--extra-light-plum);
+  background-color: var(--sidebar-table-data);
   padding: 3px;
-  color: var(--white);
+  color: var(--sidebar-table-data-text);
 }
 
 /*
@@ -444,7 +477,7 @@ User Network
   border: 2px solid black;
   margin-top: 13px;
   margin-bottom: 13px;
-  background-color: var(--burgundy);
+  background-color: var(--user-network-background);
 }
 
 .user-network h2 {
@@ -475,19 +508,19 @@ Blurbs
 ========================================
 */
 .main-section-header {
-  background-color: var(--burgundy);
+  background-color: var(--main-section-header-background);
   padding-top: 3px;
   padding-bottom: 3px;
   margin-bottom: 8px;
 }
 
 .main-section-h2 {
-  color: var(--white);
+  color: var(--main-section-h2-text);
   margin-left: 20px;
 }
 
 .blurbs h3 {
-  color: var(--cream);
+  color: var(--blurbs-text);
   font-size: 9pt;
 }
 
